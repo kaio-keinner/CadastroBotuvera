@@ -4,6 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   // Ajustei para o nome do seu repositório no GitHub
-  base: '/index.html/', 
+  base: '/CadastroBotuvera/', 
   plugins: [react(), tailwindcss()],
 })

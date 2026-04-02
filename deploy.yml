@@ -3,11 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main, master]
-  pull_request:
-    branches: [main, master]
 
-  permissions:
-    contents: write
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -21,18 +19,14 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-          
 
       - name: Install dependencies
-        run: npm install 
+        run: npm install
 
       - name: Build
-        run: npm run build 
-        env:
-          DEPLOY_ENV: gh-pages
+        run: npm run build
 
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
