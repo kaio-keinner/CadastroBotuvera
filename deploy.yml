@@ -16,17 +16,15 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: npm
-          cache-dependency-path: ./my-project/package-lock.json
+          node-version: 20 # Recomendo a 20 para projetos Vite novos
+          cache: 'npm'
+          # Removi o cache-dependency-path que apontava para pasta errada
 
       - name: Install dependencies
-        working-directory: ./my-project
-        run: npm install
+        run: npm install # Executa na raiz agora
 
       - name: Build
-        working-directory: ./my-project
-        run: npm run build
+        run: npm run build # Executa na raiz agora
         env:
           DEPLOY_ENV: gh-pages
 
@@ -35,4 +33,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./my-project/dist
+          publish_dir: ./dist
